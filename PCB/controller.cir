@@ -1,0 +1,25 @@
+* /Users/yudaitanaka/Documents/kicad/controller/controller.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: 2018年12月04日 火曜日 16:02:43
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+U6  /COM9 /FIN10 /COM10 /FIN11 /COM11 /FIN12 /COM12 GND Net-_U2-Pad14_ +5V Net-_U13-Pad11_ Net-_U13-Pad12_ GND Net-_U6-Pad14_ /FIN9 +5V SN74HC595DR		
+U9  /COM5 /FIN6 /COM6 /FIN7 /COM7 /FIN8 /COM8 GND Net-_U6-Pad14_ +5V Net-_U13-Pad11_ Net-_U13-Pad12_ GND Net-_U13-Pad9_ /FIN5 +5V SN74HC595DR		
+U13  /COM1 /FIN2 /COM2 /FIN3 /COM3 /FIN4 /COM4 GND Net-_U13-Pad9_ +5V Net-_U13-Pad11_ Net-_U13-Pad12_ GND Net-_U13-Pad14_ /FIN1 +5V SN74HC595DR		
+U1  /OUT15-1 /OUT15-1 GND GND /OUT15-2 /OUT15-2 /OUT16-2 /OUT16-2 GND GND /OUT16-1 /OUT16-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN16 /FIN16 GND Net-_U1-Pad19_ +5V /FIN15 /RIN15 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U3  /OUT13-1 /OUT13-1 GND GND /OUT13-2 /OUT13-2 /OUT14-2 /OUT14-2 GND GND /OUT14-1 /OUT14-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN14 /FIN14 GND Net-_U1-Pad19_ +5V /FIN13 /RIN13 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U7  /OUT9-1 /OUT9-1 GND GND /OUT9-2 /OUT9-2 /OUT10-2 /OUT10-2 GND GND /OUT10-1 /OUT10-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN10 /FIN10 GND Net-_U1-Pad19_ +5V /FIN9 /RIN9 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U8  /OUT7-1 /OUT7-1 GND GND /OUT7-2 /OUT7-2 /OUT8-2 /OUT8-2 GND GND /OUT8-1 /OUT8-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN8 /FIN8 GND Net-_U1-Pad19_ +5V /FIN7 /RIN7 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U12  /OUT3-1 /OUT3-1 GND GND /OUT3-2 /OUT3-2 /OUT4-2 /OUT4-2 GND GND /OUT4-1 /OUT4-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN4 /FIN4 GND Net-_U1-Pad19_ +5V /FIN3 /RIN3 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U14  /OUT1-1 /OUT1-1 GND GND /OUT1-2 /OUT1-2 /OUT2-2 /OUT2-2 GND GND /OUT2-1 /OUT2-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN2 /FIN2 GND Net-_U1-Pad19_ +5V /FIN1 /RIN1 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U10  /OUT5-1 /OUT5-1 GND GND /OUT5-2 /OUT5-2 /OUT6-2 /OUT6-2 GND GND /OUT6-1 /OUT6-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN6 /FIN6 GND Net-_U1-Pad19_ +5V /FIN5 /RIN5 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U5  /OUT11-1 /OUT11-1 GND GND /OUT11-2 /OUT11-2 /OUT12-2 /OUT12-2 GND GND /OUT12-1 /OUT12-1 Net-_U1-Pad13_ Net-_U1-Pad13_ Net-_U1-Pad15_ /RIN12 /FIN12 GND Net-_U1-Pad19_ +5V /FIN11 /RIN11 Net-_U1-Pad15_ Net-_U1-Pad13_ TB6612FNG(O,C,8,EL		
+U4  GND 80pins		
+U11  GND 80pins		
+U15  +5V controller_joint		
+U2  /COM13 /FIN14 /COM14 /FIN15 /COM15 /FIN16 /COM16 GND ? +5V Net-_U13-Pad11_ Net-_U13-Pad12_ GND Net-_U2-Pad14_ /FIN13 +5V SN74HC595DR		
+
+.end

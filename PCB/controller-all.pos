@@ -1,0 +1,18 @@
+### Module positions - created on  ###
+### Printed by Pcbnew version kicad 4.0.7
+## Unit = mm, Angle = deg.
+## Side : All
+# Ref     Val                 Package                             PosX       PosY       Rot  Side
+U1        TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm    58.4200  -104.1400    0.0000  top
+U2        SN74HC595DR         SOIC-16_3.9x9.9mm_Pitch1.27mm    71.1200  -121.9200  270.0000  top
+U3        TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm    83.8200  -104.1400    0.0000  top
+U5        TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   106.6800  -104.1400    0.0000  top
+U6        SN74HC595DR         SOIC-16_3.9x9.9mm_Pitch1.27mm   119.3800  -121.9200  270.0000  top
+U7        TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   132.0800  -104.1400    0.0000  top
+U8        TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   162.5600  -104.1400    0.0000  top
+U9        SN74HC595DR         SOIC-16_3.9x9.9mm_Pitch1.27mm   175.2600  -121.9200  270.0000  top
+U10       TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   187.9600  -104.1400    0.0000  top
+U12       TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   210.8200  -104.1400    0.0000  top
+U13       SN74HC595DR         SOIC-16_3.9x9.9mm_Pitch1.27mm   223.5200  -121.9200  270.0000  top
+U14       TB6612FNG(O,C,8,EL  SSOP-24_5.3x8.2mm_Pitch0.65mm   236.2200  -104.1400    0.0000  top
+## End

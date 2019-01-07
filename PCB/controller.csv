@@ -1,0 +1,5 @@
+"ID";"参照記号";"パッケージ";"数";"名称";"Supplier and ref";
+1;"J1,J2";"Pin_Header_Straight_1x40_Pitch2.54mm";2;"Conn_01x40_Male";;;
+2;"J3,J4";"Pin_Header_Straight_1x09_Pitch2.54mm";2;"Conn_01x09";;;
+3;"U1,U3,U5,U7,U8,U10,U12,U14";"SSOP-24_5.3x8.2mm_Pitch0.65mm";8;"TB6612FNG";;;
+4;"U2,U6,U9,U13";"SOIC-16_3.9x9.9mm_Pitch1.27mm";4;"SN74HC595DR";;;
