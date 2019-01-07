@@ -1,7 +1,7 @@
 # BulkScreen
 
 内容物  
-BulkScreen(モーターの制御コード)  
+Firmware(モーターの制御コード)  
 PCB(基板データ)  
 -回路・基盤画像(pdf)  
 -gerberデータ  
