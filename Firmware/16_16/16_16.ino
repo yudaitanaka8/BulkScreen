@@ -1,3 +1,5 @@
+#include <Shifty.h>
+
 //16*16がうごきそうなやつ
 
 #include <Shifty.h>
