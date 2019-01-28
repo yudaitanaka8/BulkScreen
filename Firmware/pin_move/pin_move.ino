@@ -1,45 +1,64 @@
-//#include <Shifty.h>
-
-//Shifty shift;
+int latchPin = 8;
+int clockPin = 12;
+int dataPin = 11;
 
 int STBY = 10;
 
-//テスト用の配列
-int test_array[16][16] = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
-                          {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
-                          };
+int PWM = A3;
+
+byte writeBuffer[64];
+byte dataModes[64];
+byte readBuffer[64];
 
 void setup() {
-  // put your setup code here, to run once:
-  //shift.setBitCount(512);
   Serial.begin(9600);
 
-  //shift.setPins(11, 12, 8);
-  analogWrite(A3, 255);
+  //バッファ配列の初期化
+  for (int i = 0; i < 64; i++) {
+    writeBuffer[i] = 1;
+    dataModes[i] = 1;
+    readBuffer[i] = 1;
+  }
+
+  //latch, clock, data
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin, OUTPUT);
 
   pinMode(STBY, OUTPUT);
+
+  analogWrite(PWM, 255);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  for (int i = 0; i < 16; i++) {
-    for (int j = 0; j < 16; j++) {
-      Serial.println(test_array[i][j]);
-      delay(1000);
-    }
+  /*
+  for (int i = 0; i < 7; i++) {
+    digitalWrite(latchPin, LOW);
+    shiftOut(dataPin, clockPin, LSBFIRST, 1 << i);
+    digitalWrite(latchPin, HIGH);
+     Serial.println(i);
+    delay(1000);
   }
+  */
+
+  /*
+  for (int i = 0; i < 512; i++) {
+    int bytenum = i / 8;
+    int offset = i % 8;
+    byte b = writeBuffer[bytenum];
+    if (offset % 2 == 0) bitWrite(b, offset, LOW);
+    else bitWrite(b , offset, HIGH);
+    writeBuffer[bytenum] = b;
+  }
+ */
+  digitalWrite(STBY, HIGH);
+  digitalWrite(latchPin, LOW);
+  digitalWrite(clockPin, LOW);
+  for (int i = 0; i < 64; i++) {
+    shiftOut(dataPin, clockPin, MSBFIRST, writeBuffer[i]);
+    Serial.println(writeBuffer[i]);
+    delay(1000);
+  }
+  digitalWrite(latchPin, HIGH);
+  analogWrite(PWM, 255);
 }
