@@ -33,18 +33,20 @@ analogWrite(PWM, 255);
 
 void loop(){
 move(1, 255, 1); //motor 1, full speed, left
-move(2, 255, 1); //motor 2, full speed, left
+Serial.println("1");
+delay(1000);
 
+move(2, 255, 1); //motor 2, full speed, left
+Serial.println("2");
 delay(1000); //go for 1 second
-//stop(); //stop
-//delay(250); //hold for 250ms until move again
 
 move(1, 255, 0); //motor 1, half speed, right
-move(2, 255, 0); //motor 2, half speed, right
-
+Serial.println("3");
 delay(1000);
-//stop();
-//delay(250);
+
+move(2, 255, 0); //motor 2, half speed, right
+Serial.println("4");
+delay(1000);
 }
 
 void move(int motor, int speed, int direction){
@@ -65,21 +67,17 @@ inPin2 = HIGH;
 
 if(motor == 1){
 shift.writeBit(AIN1, inPin1);
-Serial.println(shift.readBit(AIN1));
 shift.writeBit(AIN2, inPin2);
-Serial.println(shift.readBit(AIN2));
+
 shift.writeBit(BIN1, inPin1);
-Serial.println(shift.readBit(BIN1));
 shift.writeBit(BIN2, inPin2);
-Serial.println(shift.readBit(BIN2));
+
 shift.writeBit(CIN1, inPin1);
-Serial.println(shift.readBit(CIN1));
 shift.writeBit(CIN2, inPin2);
-Serial.println(shift.readBit(CIN2));
+
 shift.writeBit(DIN1, inPin1);
-Serial.println(shift.readBit(DIN1));
 shift.writeBit(DIN2, inPin2);
-Serial.println(shift.readBit(DIN2));
+
 analogWrite(PWM, 255);
 //Serial.println(inPin1);
 }
