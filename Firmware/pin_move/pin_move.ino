@@ -6,13 +6,9 @@ int STBY = 10;
 
 int PWM = A3;
 
-byte writeBuffer[64];
-byte dataModes[64];
-byte readBuffer[64];
-
-//ピンを出す配列
+//ピンを出す配列、最初は全部B10101010
 byte pin_move[64];
-//ピンを戻す配列
+//ピンを戻す配列、全部B01010101
 byte pin_return[64];
 
 //テスト用のモーターの挙動
@@ -35,51 +31,8 @@ int test_array[16][16] = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2},
                           {9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8},
                           };
 
-int motor_rotate;  //1cm進むのに必要な回転数
-
-//所定の位置まで進むのに必要なループ回数
-void motorLoopCount(int array[][], int rotate) {
-  for (int i = 0; i < 16; i++) {
-    for (int j = 0; j < 16; j++) {
-      int loopCount = array[i][j];
-      array[i][j] = loopCount * rotate;
-    }
-  }
-}
-
-
-
 //モーターを動かす
-//1,2,3は例、4で個々に動かす
-void move_motor(byte motor) {
-  digitalWrite(STBY, HIGH);
-  digitalWrite(latchPin, LOW);
-  digitalWrite(clockPin, LOW);
-  shiftOut(dataPin, clockPin, LSBFIRST, motor);
-  digitalWrite(latchPin, HIGH);
-  analogWrite(PWM, 255);
-}
-
-void move_motor2(long motor) {
-  digitalWrite(STBY, HIGH);
-  digitalWrite(latchPin, LOW);
-  digitalWrite(clockPin, LOW);
-  shiftOut(dataPin, clockPin, LSBFIRST, motor);
-  digitalWrite(latchPin, HIGH);
-  analogWrite(PWM, 255);
-}
-
-void move_motor3(byte motor) {
-  digitalWrite(STBY, HIGH);
-  digitalWrite(latchPin, HIGH);
-  digitalWrite(clockPin, LOW);
-  shiftOut(dataPin, clockPin, LSBFIRST, motor);
-  digitalWrite(latchPin, HIGH);
-  analogWrite(PWM, 255);
-}
-
-//全部動かす
-void move_motor4(byte motor[]) {
+void move_motor(byte motor[]) {
   digitalWrite(STBY, HIGH);
   digitalWrite(latchPin, LOW);
   digitalWrite(clockPin, LOW);
@@ -93,21 +46,14 @@ void move_motor4(byte motor[]) {
 void setup() {
   Serial.begin(9600);
 
-  //バッファ配列の初期化
-  //writebuffer: 奇数番目は3,4個目、偶数番目は1,2個目のモーターが動く
-  for (int i = 0; i < 64; i++) {
-    if (i % 2 == 0) {
-      writeBuffer[i] = B10100000;
-    } else {
-      writeBuffer[i] = B00001010;
-    }
-    dataModes[i] = B11111111;
-    readBuffer[i] = B11111111;
-  }
-
   //pin_moveの初期化
   for (int i = 0; i < 64; i++) {
     pin_move[i] = B10101010;
+  }
+
+  //pin_returnの初期化
+  for (int i = 0; i < 64; i++) {
+    pin_return[i] = B01010101;
   }
 
   //latch, clock, data
@@ -120,12 +66,12 @@ void setup() {
   analogWrite(PWM, 255);
 }
 
+//順回転の時は1ループで1cm動かす、逆回転の時は1ループで完結
 void loop() {
 
-  move_motor4(writeBuffer);
-  delay(1000);
+  move_motor(pin_move);
+  delay(1000);  // (1000 / (1秒で進む距離)[cm])
   digitalWrite(STBY, LOW);
-  delay(1000);
 
   //pin_moveの更新
   for (int i = 0; i < 64; i++) {
@@ -133,18 +79,28 @@ void loop() {
     int b = i % 4;
     for (int j = 0; j < 4; j++) {
       byte pin_i = pin_move[i];
-      if (test_array[a][b * 4 + 1] == 0) bitWrite(pin_i, (9 - b * 2), 0);
-      else bitWrite(pin_i, (9 - b * 2), 1);
+      if (test_array[a][b * 4 + j] == 0) bitWrite(pin_i, (7 - j * 2), 0);
+      else bitWrite(pin_i, (7 - j * 2), 1);
       pin_move[i] = pin_i;
     }
   }
 
+  //モーターを順回転させるか逆回転させるか判定, 0なら逆回転になる
+  int rotate_direction = 0;
+  
   //test_arrayの更新
   for (int i = 0; i < 16; i++) {
     for (int j = 0; j < 16; j++) {
       int array_ij = test_array[i][j];
-      array_ij--;
+      if (array_ij != 0) array_ij--;
+      else rotate_direction++;
       test_array[i][j] = array_ij;
     }
+  }
+
+  if (rotate_direction == 0) {
+    move_motor(pin_return);
+    delay(3000);   // ((1000 / (1秒で進む距離)[cm]) * (最大のピンの長さ))
+    digitalWrite(STBY, LOW);
   }
 }
